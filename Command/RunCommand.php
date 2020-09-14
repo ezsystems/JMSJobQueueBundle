@@ -18,7 +18,7 @@
 
 namespace JMS\JobQueueBundle\Command;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\Persistence\ObjectManager;
 use JMS\JobQueueBundle\Entity\Job;
 use JMS\JobQueueBundle\Entity\Repository\JobManager;
 use JMS\JobQueueBundle\Event\NewOutputEvent;
@@ -149,6 +149,8 @@ class RunCommand extends Command
             $this->queueOptionsDefault,
             $this->queueOptions
         );
+
+        return 0;
     }
 
     private function runJobs($workerName, $startTime, $maxRuntime, $idleTime, $maxJobs, array $restrictedQueues, array $queueOptionsDefaults, array $queueOptions)
@@ -272,6 +274,10 @@ class RunCommand extends Command
         return $runningJobsPerQueue;
     }
 
+    /**
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
     private function checkRunningJobs()
     {
         foreach ($this->runningJobs as $i => &$data) {
@@ -443,8 +449,8 @@ class RunCommand extends Command
         return $args;
     }
 
-    private function getEntityManager(): EntityManager
+    private function getEntityManager(): ObjectManager
     {
-        return /** @var EntityManager */ $this->registry->getManagerForClass('JMSJobQueueBundle:Job');
+        return /** @var ObjectManager */ $this->registry->getManagerForClass('JMSJobQueueBundle:Job');
     }
 }
