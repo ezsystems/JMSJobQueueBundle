@@ -5,6 +5,7 @@ namespace JMS\JobQueueBundle\Controller;
 use Doctrine\Common\Util\ClassUtils;
 use Doctrine\ORM\EntityManager;
 use JMS\JobQueueBundle\Entity\Job;
+use JMS\JobQueueBundle\Entity\Repository\JobManager;
 use JMS\JobQueueBundle\View\JobFilter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -153,7 +154,7 @@ class JobController extends AbstractController
         return $this->get('doctrine')->getManagerForClass(Job::class);
     }
 
-    private function getRepo(): object
+    private function getRepo(): JobManager
     {
         return $this->get('jms_job_queue.job_manager');
     }

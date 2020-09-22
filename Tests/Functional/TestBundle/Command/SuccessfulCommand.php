@@ -17,5 +17,6 @@ class SuccessfulCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        return Command::SUCCESS;
     }
 }
