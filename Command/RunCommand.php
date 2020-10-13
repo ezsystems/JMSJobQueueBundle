@@ -150,7 +150,7 @@ class RunCommand extends Command
             $this->queueOptions
         );
 
-        return 0;
+        return Command::SUCCESS;
     }
 
     private function runJobs($workerName, $startTime, $maxRuntime, $idleTime, $maxJobs, array $restrictedQueues, array $queueOptionsDefaults, array $queueOptions)

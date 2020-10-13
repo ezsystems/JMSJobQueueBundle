@@ -52,6 +52,6 @@ class MarkJobIncompleteCommand extends Command
 
         $this->jobManager->closeJob($job, Job::STATE_INCOMPLETE);
 
-        return 0;
+        return Command::SUCCESS;
     }
 }

@@ -30,6 +30,6 @@ class SometimesFailingCommand extends Command
 
         $output->writeln('Success.');
 
-        return 0;
+        return Command::SUCCESS;
     }
 }
