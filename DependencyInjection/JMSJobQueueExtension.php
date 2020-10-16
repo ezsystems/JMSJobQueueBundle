@@ -66,7 +66,7 @@ class JMSJobQueueExtension extends Extension implements PrependExtensionInterfac
             'dbal' => array(
                 'types' => array(
                     'jms_job_safe_object' => array(
-                        'class' => SafeObjectType::class
+                        'class' => SafeObjectType::class,
                     )
                 )
             )
